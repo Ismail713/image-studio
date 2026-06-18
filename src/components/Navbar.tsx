@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { href: "/generator", label: "Generator" },
@@ -38,11 +39,12 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop auth */}
-        <div className="hidden md:flex items-center gap-3">
+        {/* Desktop auth + theme toggle */}
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <Link
             href="/sign-in"
-            className="text-[15px] text-ink-muted hover:text-ink transition-colors"
+            className="text-[15px] text-ink-muted hover:text-ink transition-colors px-2"
           >
             Log in
           </Link>
@@ -54,16 +56,19 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden p-2 rounded-md hover:bg-canvas-soft transition-colors"
-          onClick={() => setMenuOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          <span className="block w-5 h-0.5 bg-ink mb-1" />
-          <span className="block w-5 h-0.5 bg-ink mb-1" />
-          <span className="block w-5 h-0.5 bg-ink" />
-        </button>
+        {/* Mobile: theme toggle + hamburger */}
+        <div className="flex md:hidden items-center gap-1">
+          <ThemeToggle />
+          <button
+            className="p-2 rounded-md hover:bg-canvas-soft transition-colors"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <span className="block w-5 h-0.5 bg-ink mb-1" />
+            <span className="block w-5 h-0.5 bg-ink mb-1" />
+            <span className="block w-5 h-0.5 bg-ink" />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile menu */}
