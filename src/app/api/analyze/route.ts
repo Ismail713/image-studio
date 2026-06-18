@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
     );
 
     const cfJson = await cfRes.json();
+    console.log("[analyze] Cloudflare response:", JSON.stringify(cfJson).slice(0, 500));
 
     if (!cfJson.success) {
       const message =
@@ -49,7 +50,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: message }, { status: 502 });
     }
 
-    const description: string = cfJson.result.description;
+    // LLaVA returns result.description; fall back to result.response for other vision models
+    const description: string =
+      cfJson.result?.description ?? cfJson.result?.response ?? "";
+
+    if (!description) {
+      console.error("[analyze] empty result from Cloudflare:", JSON.stringify(cfJson));
+      return NextResponse.json(
+        { error: "The AI returned an empty response. Please try again with a different image." },
+        { status: 502 }
+      );
+    }
+
     return NextResponse.json({ prompt: description });
   } catch (err) {
     console.error("[analyze] unexpected error:", err);

@@ -55,32 +55,29 @@ export default function DropZone({ onFileSelect }: DropZoneProps) {
   function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (file) handleFile(file);
-    // reset so the same file can be re-selected after an error
     e.target.value = "";
+  }
+
+  function openFilePicker() {
+    inputRef.current?.click();
   }
 
   return (
     <div className="flex flex-col items-center gap-3 w-full">
       <div
-        role="button"
-        tabIndex={0}
-        aria-label="Drop zone — click or drag an image here"
-        onClick={() => inputRef.current?.click()}
-        onKeyDown={(e) => e.key === "Enter" && inputRef.current?.click()}
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
         onDrop={onDrop}
+        onClick={openFilePicker}
         className={[
-          "flex flex-col items-center justify-center gap-4",
-          "w-full rounded-2xl border-2 border-dashed px-8 py-16 cursor-pointer",
-          "transition-colors duration-150 select-none outline-none",
-          "focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900",
+          "flex flex-col items-center justify-center gap-6",
+          "w-full rounded-xl border-2 border-dashed px-8 py-14 cursor-pointer",
+          "transition-colors duration-150 select-none",
           isDragging
-            ? "border-indigo-400 bg-indigo-950/30"
-            : "border-zinc-600 bg-zinc-800/40 hover:border-zinc-400 hover:bg-zinc-800/60",
+            ? "border-primary bg-blue-50 dark:bg-blue-950/30"
+            : "border-hairline bg-surface hover:border-ink-faint",
         ].join(" ")}
       >
-        {/* Upload icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -91,7 +88,7 @@ export default function DropZone({ onFileSelect }: DropZoneProps) {
           strokeLinejoin="round"
           className={[
             "w-12 h-12 transition-colors duration-150",
-            isDragging ? "text-indigo-400" : "text-zinc-400",
+            isDragging ? "text-primary" : "text-ink-faint",
           ].join(" ")}
           aria-hidden
         >
@@ -103,29 +100,32 @@ export default function DropZone({ onFileSelect }: DropZoneProps) {
         <p
           className={[
             "text-base font-medium text-center transition-colors duration-150",
-            isDragging ? "text-indigo-300" : "text-zinc-300",
+            isDragging ? "text-primary" : "text-ink-secondary",
           ].join(" ")}
         >
-          Drop your art image here or click to upload
+          Drag and drop your image here
         </p>
 
-        <p className="text-xs text-zinc-500">JPG, PNG, WebP · max 5 MB</p>
+        <span className="bg-primary hover:bg-primary-active text-on-primary text-sm font-medium px-6 py-2.5 rounded-full transition-colors">
+          Browse files
+        </span>
+
+        <p className="text-xs text-ink-faint">JPG, PNG, WebP · max 5 MB</p>
       </div>
-
-      {error && (
-        <p role="alert" className="text-sm text-red-400">
-          {error}
-        </p>
-      )}
 
       <input
         ref={inputRef}
         type="file"
         accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
-        className="sr-only"
-        tabIndex={-1}
         onChange={onInputChange}
+        className="block w-full text-sm text-ink-muted file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-medium file:bg-primary file:text-on-primary hover:file:bg-primary-active file:cursor-pointer"
       />
+
+      {error && (
+        <p role="alert" className="text-sm text-red-500">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
