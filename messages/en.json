@@ -3,6 +3,12 @@
     "title": "imagestudio — Image to Prompt Generator",
     "description": "Turn any image into a perfect AI art prompt using Cloudflare AI."
   },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "generator": "Generator",
+    "gallery": "Gallery",
+    "history": "History"
+  },
   "nav": {
     "generator": "Generator",
     "gallery": "Gallery",

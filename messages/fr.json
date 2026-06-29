@@ -3,6 +3,12 @@
     "title": "imagestudio — Générateur d'image en prompt",
     "description": "Transformez n'importe quelle image en prompt artistique IA parfait grâce à Cloudflare AI."
   },
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "generator": "Générateur",
+    "gallery": "Galerie",
+    "history": "Historique"
+  },
   "nav": {
     "generator": "Générateur",
     "gallery": "Galerie",
