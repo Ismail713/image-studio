@@ -169,6 +169,8 @@
     "title": "Sign In — imagestudio",
     "heading": "Welcome back",
     "description": "Sign in to your imagestudio account.",
+    "google": "Google",
+    "microsoft": "Microsoft",
     "email": "Email",
     "emailPlaceholder": "you@example.com",
     "password": "Password",

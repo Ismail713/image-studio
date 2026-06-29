@@ -169,6 +169,8 @@
     "title": "Connexion — imagestudio",
     "heading": "Bon retour",
     "description": "Connectez-vous à votre compte imagestudio.",
+    "google": "Google",
+    "microsoft": "Microsoft",
     "email": "E-mail",
     "emailPlaceholder": "vous@exemple.com",
     "password": "Mot de passe",

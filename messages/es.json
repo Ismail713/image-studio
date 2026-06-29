@@ -169,6 +169,8 @@
     "title": "Iniciar sesión — imagestudio",
     "heading": "Bienvenido de nuevo",
     "description": "Inicia sesión en tu cuenta de imagestudio.",
+    "google": "Google",
+    "microsoft": "Microsoft",
     "email": "Correo electrónico",
     "emailPlaceholder": "tu@ejemplo.com",
     "password": "Contraseña",
