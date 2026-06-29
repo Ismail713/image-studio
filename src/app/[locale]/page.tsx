@@ -1,8 +1,24 @@
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { HeroLanding } from "@/components/ui/hero-1";
+import { ArcGalleryHero } from "@/components/ui/arc-gallery-hero-component";
 import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+
+const heroImages = [
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1546238232-20216dec9f72?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=400&auto=format&fit=crop",
+];
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -13,7 +29,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
 function HomePageContent({ locale }: { locale: string }) {
   const t = useTranslations("home");
-  const tNav = useTranslations("nav");
 
   const features = [
     { title: t("featureImage"), desc: t("featureImageDesc") },
@@ -23,38 +38,34 @@ function HomePageContent({ locale }: { locale: string }) {
 
   return (
     <>
+      <Navbar />
       <main className="flex-1 flex flex-col">
-        <HeroLanding
-          logo={{
-            src: "https://images.unsplash.com/photo-1633409361618-c73427e4e206?q=80&w=40&h=40&auto=format&fit=crop",
-            alt: "imagestudio logo",
-            companyName: "imagestudio",
-          }}
-          navigation={[
-            { name: tNav("generator"), href: `/${locale}/generator` },
-            { name: tNav("gallery"), href: `/${locale}/gallery` },
-            { name: tNav("howItWorks"), href: `/${locale}/how-it-works` },
-            { name: tNav("pricing"), href: `/${locale}/pricing` },
-          ]}
-          loginText={tNav("logIn")}
-          loginHref={`/${locale}/sign-in`}
-          title={`${t("headline")} ${t("headlineAccent")}`}
-          description={t("description")}
-          announcementBanner={{
-            text: t("eyebrow"),
-            linkText: t("cta"),
-            linkHref: `/${locale}/generator`,
-          }}
-          callToActions={[
-            { text: tNav("getStarted"), href: `/${locale}/sign-up`, variant: "primary" },
-            { text: t("ctaSecondary"), href: `/${locale}/how-it-works`, variant: "secondary" },
-          ]}
-          titleSize="large"
-          gradientColors={{
-            from: "oklch(0.588 0.199 265.866)",
-            to: "oklch(0.488 0.243 264.376)",
-          }}
-        />
+        <ArcGalleryHero images={heroImages}>
+          <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-3 sm:mb-4 block">
+            {t("eyebrow")}
+          </span>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-[-1px] sm:tracking-[-2px] mb-4 sm:mb-6 leading-tight text-ink">
+            {t("headline")}{" "}
+            <span className="text-primary">{t("headlineAccent")}</span>
+          </h1>
+          <p className="text-base sm:text-lg text-ink-muted max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2 sm:px-0">
+            {t("description")}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
+            <Link
+              href={`/${locale}/generator`}
+              className="bg-primary hover:bg-primary-active text-on-primary px-8 py-3 rounded-full font-medium transition-colors text-center"
+            >
+              {t("cta")}
+            </Link>
+            <Link
+              href={`/${locale}/how-it-works`}
+              className="border border-hairline hover:border-ink-faint bg-surface px-8 py-3 rounded-full font-medium transition-colors text-ink text-center"
+            >
+              {t("ctaSecondary")}
+            </Link>
+          </div>
+        </ArcGalleryHero>
 
         <section className="bg-canvas-soft py-12 sm:py-20 px-4">
           <div className="max-w-270 mx-auto">
