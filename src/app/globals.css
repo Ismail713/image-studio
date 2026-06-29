@@ -7,7 +7,9 @@
   --foreground: #000000;
   --primary: #0075de;
   --primary-active: #005bab;
+  --primary-foreground: #ffffff;
   --secondary: #213183;
+  --secondary-foreground: #ffffff;
   --on-primary: #ffffff;
   --canvas: #ffffff;
   --canvas-soft: #f6f5f4;
@@ -17,6 +19,20 @@
   --ink-muted: #615d59;
   --ink-faint: #a39e98;
   --hairline: #e6e6e6;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --muted: #f6f5f4;
+  --muted-foreground: #615d59;
+  --accent: #f6f5f4;
+  --accent-foreground: #000000;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e6e6e6;
+  --input: #e6e6e6;
+  --ring: #0075de;
+  --radius: 0.5rem;
+  --gradient-color: #8350e8;
+  --sparkles-color: #8350e8;
 }
 
 @theme inline {
@@ -24,7 +40,9 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-primary-active: var(--primary-active);
+  --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-on-primary: var(--on-primary);
   --color-canvas: var(--canvas);
   --color-canvas-soft: var(--canvas-soft);
@@ -34,7 +52,21 @@
   --color-ink-muted: var(--ink-muted);
   --color-ink-faint: var(--ink-faint);
   --color-hairline: var(--hairline);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sparkles-color: var(--sparkles-color);
+  --color-gradient-color: var(--gradient-color);
   --font-sans: var(--font-inter);
+  --radius: var(--radius);
 }
 
 :root.dark {
@@ -48,6 +80,21 @@
   --ink-muted: #a0a0a0;
   --ink-faint: #6b6b6b;
   --hairline: #333333;
+  --primary-foreground: #ffffff;
+  --secondary-foreground: #ffffff;
+  --card: #252525;
+  --card-foreground: #ededed;
+  --muted: #1e1e1e;
+  --muted-foreground: #a0a0a0;
+  --accent: #1e1e1e;
+  --accent-foreground: #ededed;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #333333;
+  --input: #333333;
+  --ring: #0075de;
+  --gradient-color: #8350e8;
+  --sparkles-color: #ffffff;
 }
 
 body {

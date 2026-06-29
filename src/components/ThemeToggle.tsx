@@ -1,9 +1,22 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTheme } from "./ThemeProvider";
 
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    return (
+      <button
+        aria-label="Toggle theme"
+        className="p-2 rounded-lg hover:bg-canvas-soft transition-colors text-ink-muted hover:text-ink w-9 h-9"
+      />
+    );
+  }
 
   return (
     <button

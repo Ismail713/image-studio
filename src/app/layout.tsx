@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,22 +6,13 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "imagestudio — Image to Prompt Generator",
-  description: "Turn any image into a perfect AI art prompt using Cloudflare AI.",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${inter.variable} h-full antialiased`}
-    >
+    <html suppressHydrationWarning className={`${inter.variable} h-full antialiased`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -32,7 +21,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col">
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   );
